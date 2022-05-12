@@ -110,18 +110,20 @@ int strit(int* array) {
 int flashRoyl(int* array) {
 	if (array[0] % 100 == 10) {
 		for (int i = 0; i < 4; i++) {
-			if (array[i] / 100 != array[i + 1] / 100) {
+			if ((array[i] % 100 + 1) != array[i + 1] % 100) {
 				cout << "не флеш роял" << endl;
 				return 1;
 				break;
 			}
 		}
+	    return 2;
 	}
-	return 2;
+	return 1;
 }
 //каре - 4 карты одного достоинства
 int kare(int* array) {
 	int temp;
+	int counter = 0;
 	for (int i = 0; i < 5 - 1; i++) {
 		for (int j = 0; j < 5 - i - 1; j++) {
 			if (array[j] % 100 > array[j + 1] % 100) {
@@ -134,16 +136,12 @@ int kare(int* array) {
 	cout << "Сортировка kare" << endl;
 	showArray(array);
 	for (int i = 0; i < 4; i++) {
-		if ((array[i] % 100) == array[i + 1] % 100);
-		else {
-			i++;
-			if ((array[i] % 100) != array[i + 1] % 100) {
+		if ((array[i] % 100) == array[i + 1] % 100 && counter<3) counter++;
+			if ((array[i] % 100) != array[i + 1] % 100 && counter < 3 && counter > 0) {
 				cout << "не каре" << endl;
 				return 0;
 				break;
 			}
-		}
-
 	}
 	return 1;
 }
@@ -163,30 +161,12 @@ int set(int* array) {
 	cout << "Сортировка set" << endl;
 	showArray(array);
 	for (int i = 0; i < 4; i++) {
-		if ((array[i] % 100) == array[i + 1] % 100) {
-			counter++;
-			if (counter == 3 && array[3] == array[4]) {
-				return 2;
-				break;
-			}
-			if (counter == 6 && array[0] == array[1]) {
-				return 2;
-				break;
-			}
+		if ((array[i] % 100) == array[i + 1] % 100 && counter < 2) counter++;
+		if ((array[i] % 100) != array[i + 1] % 100 && counter < 2 && counter > 0) {
+			cout << "не каре" << endl;
+			return 0;
+			break;
 		}
-		else {
-			i++;
-			if ((array[i] % 100) != array[i + 1] % 100) {
-				i++;
-				counter = 3;
-				if ((array[i] % 100) != array[i + 1] % 100) {
-					cout << "не set" << endl;
-					return 0;
-					break;
-				}
-			}
-		}
-
 	}
 	return 1;
 }
@@ -253,8 +233,9 @@ int main()
 	cout << "Ввидите кол - во игроков" << endl;
 	cin >> gamer;
 	//казино всегда участвует в раздаче
-	int* casino = new int[5]{};
-	razdacha(colodaArray, casino);
+	int* casino = new int[5]{307,407,305,508,609};
+	//ТЕСТ
+	//razdacha(colodaArray, casino);
 	cout << "Карты КАЗИНО:" << endl;
 	showArray(casino);
 	//максимальное колличество игроков 4 + казино. калода 52 карты. в раздаче 5.
@@ -269,6 +250,7 @@ int main()
 		razdacha(colodaArray, igrok1);
 		cout << "Карты ИГРОКА1:" << endl;
 		showArray(igrok1);
+		break;
 	}
 	case 2: {
 		razdacha(colodaArray, igrok1);
