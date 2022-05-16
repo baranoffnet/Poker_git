@@ -1,7 +1,2 @@
-﻿  Poker_12_05.cpp
-E:\Учеба\С++\Poker_git\Poker_12_05\Poker_12_05.cpp(10,45): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-E:\Учеба\С++\Poker_git\Poker_12_05\Poker_12_05.cpp(26,57): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-E:\Учеба\С++\Poker_git\Poker_12_05\Poker_12_05.cpp(27,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-E:\Учеба\С++\Poker_git\Poker_12_05\Poker_12_05.cpp(36,58): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-E:\Учеба\С++\Poker_git\Poker_12_05\Poker_12_05.cpp(51,58): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+﻿  combination.cpp
   Poker_12_05.vcxproj -> E:\Учеба\С++\Poker_git\Poker_12_05\x64\Debug\Poker_12_05.exe
