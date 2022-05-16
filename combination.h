@@ -10,4 +10,6 @@ int kare(int* array);
 //сет - три карты одного достоинства
 int set(int* array);
 //две пары/пара
-int Para(int* array);
+int para(int* array);
+//старшая
+int big(int* array);

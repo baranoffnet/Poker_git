@@ -3,19 +3,33 @@
 #include <ctime>
 using namespace std;
 #include "show.h"
+int flashRoyl(int* array);
+int flash(int* array);
+int strit(int* array);
+int kare(int* array);
+int set(int* array);
+int para(int* array);
+int big(int* array);
+
+// Флеш роял -  12 флеш+6
+// Стрит флеш - 11 флеш+стрит
+// Каре -       8
+// Фулл хаус -  7 сет+две пары
+// Флеш -       6
+// Стрит -      5
+// Сет(тройка)- 4
+// Две пары -   3
+// Пара -       2
 //флеш роял - карты одной масти от 10 до туза
 int flashRoyl(int* array) {
 	if (array[0] % 100 == 10) {
 		for (int i = 0; i < 4; i++) {
 			if ((array[i] % 100 + 1) != array[i + 1] % 100) {
-				cout << "не флеш роял" << endl;
-				return 1;
-				break;
+				return 0;
 			}
 		}
-		return 2;
+		return 6;
 	}
-	return 1;
 }
 //флеш - карты одной масти
 int flash(int* array) {
@@ -29,17 +43,13 @@ int flash(int* array) {
 			}
 		}
 	}
-	cout << "Сортировка flash" << endl;
-	showArray(array);
 	for (int i = 0; i < 4; i++) {
 		if (array[i] / 100 != array[i + 1] / 100) {
-			cout << "не флеш" << endl;
 			return 0;
-			break;
 		}
 	}
 
-	return flashRoyl(array);
+	return 6 + flashRoyl(array) + strit(array);
 
 }
 //стрит - последовательно расположенные карты
@@ -54,16 +64,12 @@ int strit(int* array) {
 			}
 		}
 	}
-	cout << "Сортировка strit" << endl;
-	showArray(array);
 	for (int i = 0; i < 4; i++) {
 		if ((array[i] % 100) + 1 != array[i + 1] % 100) {
-			cout << "не стрит" << endl;
 			return 0;
-			break;
 		}
 	}
-	return 1;
+	return 5;
 }
 //каре - 4 карты одного достоинства
 int kare(int* array) {
@@ -78,17 +84,13 @@ int kare(int* array) {
 			}
 		}
 	}
-	cout << "Сортировка kare" << endl;
-	showArray(array);
 	for (int i = 0; i < 4; i++) {
-		if ((array[i] % 100) == array[i + 1] % 100 && counter < 3) counter++;
-		if ((array[i] % 100) != array[i + 1] % 100 && counter < 3 && counter > 0) {
-			cout << "не каре" << endl;
+		if ((array[i] / 100) == array[i + 1] / 100 && counter < 3) counter++;
+		if ((array[i] / 100) != array[i + 1] / 100 && counter < 3 && counter > 0) {
 			return 0;
-			break;
 		}
 	}
-	return 1;
+	return 8;
 }
 //сет - три карты одного достоинства
 int set(int* array) {
@@ -103,22 +105,18 @@ int set(int* array) {
 			}
 		}
 	}
-	cout << "Сортировка set" << endl;
-	showArray(array);
 	for (int i = 0; i < 4; i++) {
 		if ((array[i] % 100) == array[i + 1] % 100 && counter < 2) counter++;
 		if ((array[i] % 100) != array[i + 1] % 100 && counter < 2 && counter > 0) {
-			cout << "не каре" << endl;
 			return 0;
-			break;
 		}
 	}
-	return 1;
+	return 4+ para(array);
 }
 //две пары/пара
-int Para(int* array) {
+int para(int* array) {
 	int temp;
-	int counter = 0;
+	int counter = 1;
 	for (int i = 0; i < 5 - 1; i++) {
 		for (int j = 0; j < 5 - i - 1; j++) {
 			if (array[j] % 100 > array[j + 1] % 100) {
@@ -128,8 +126,6 @@ int Para(int* array) {
 			}
 		}
 	}
-	cout << "Сортировка две пары" << endl;
-	showArray(array);
 	for (int i = 0; i < 4; i++) {
 		if ((array[i] % 100) == array[i + 1] % 100) {
 			i++;
@@ -137,4 +133,18 @@ int Para(int* array) {
 		}
 	}
 	return counter;
+}
+//старшая
+int big(int* array) {
+	int temp;
+	for (int i = 0; i < 5 - 1; i++) {
+		for (int j = 0; j < 5 - i - 1; j++) {
+			if (array[j] % 100 > array[j + 1] % 100) {
+				temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
+			}
+		}
+	}
+	return array[4];
 }

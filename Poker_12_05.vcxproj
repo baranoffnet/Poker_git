@@ -156,12 +156,14 @@
     </ClCompile>
     <ClCompile Include="Poker_12_05.cpp" />
     <ClCompile Include="razdacha.cpp" />
+    <ClCompile Include="result.cpp" />
     <ClCompile Include="show.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="combination.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="razdacha.h" />
+    <ClInclude Include="result.h" />
     <ClInclude Include="show.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
