@@ -14,51 +14,26 @@ using namespace std;
 // Пара -       2
 //определение комбинации
 int hodCasino(int* array) {
+	//проверячем флеш
+	int m = flash(array);
 	//проверяем флеш роял - карты одной масти с 10
-	if (flash(array) == 12) {
-		cout << "Флеш роял" << endl;
-		return 12;
-	}
-	//проверяем флеш - карты одной масти
-	if (flash(array) == 6) {
-		cout << "Флеш" << endl;
-		return 6;
-	}
-	//проверяем стрит флеш - карты одной масти
-	if (flash(array) == 11) {
-		cout << "Стрит флеш" << endl;
-		return 11;
-	}
+		if (m == 12) return 12;
+		//проверяем флеш - карты одной масти
+		if (m == 6) return 6;
+		//проверяем стрит флеш - карты одной масти
+		if (m == 11) return 11;
 	//проверяем стрит - карты последовательно
-	if (strit(array) == 5) {
-		cout << "Стрит" << endl;
-		return 5;
-	}
+	if (strit(array) == 5) return 5;
 	//проверяем каре - четыре карты одного достоинства
-	if (kare(array) == 8) {
-		cout << "Каре" << endl;
-		return 8;
-	}
+	if (kare(array) == 8) return 8;
 	//проверяем сет - три карты одного достоинства возврвщает 1//фулл хаус возвращает 2
-	if (set(array) == 4) {
-		cout << "Сет" << endl;
-		return 4;
-	}
+	if (set(array) == 4) return 4;
 	//проверяем фулл хаус - три карты одного достоинства и пара
-	if (set(array) == 7) {
-		cout << "Фулл хаус" << endl;
-		return 7;
-	}
+	if (set(array) == 7) return 7;
 	//проверяем две пары возврашает 
-	if (para(array) == 3) {
-		cout << "Две пары" << endl;
-		return 3;
-	}
+	if (para(array) == 3) return 3;
 	//проверяем пару
-	if (para(array) == 2) {
-		cout << "Пара" << endl;
-		return 2;
-	}
+	if (para(array) == 2) return 2;
 	//получаем старшую
-	return 0;
+	return big(array);
 }

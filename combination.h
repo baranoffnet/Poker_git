@@ -1,4 +1,5 @@
-#pragma once
+//сортировка масти
+void sortingM(int* array);
 //флеш - карты одной масти
 int flash(int* array);
 //флеш роял - карты одной масти от 10 до туза
